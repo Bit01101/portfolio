@@ -13,22 +13,37 @@
 html,
 body {
   height: 100dvh;
-  width: 100dvw;
   font-size: var(--font-size);
   background-color: var(--color-bg-main);
   color: var(--color-text-primary);
 }
 
 html {
-  font-size: var(--base-font-size);
+  font-size: calc(var(--base-font-size) * var(--aspecto-ratio));
   background-color: var(--background-color);
   font-family: "Bembo", serif;
+}
+
+a {
+  color: black;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.header-text {
+  font-size: 3rem;
+}
+
+.block-info {
+  height: 100dvh;
+}
+
+.offset-element {
+  padding-left: 3rem;
 }
 
 .grid-position-left-top {

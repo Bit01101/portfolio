@@ -3,24 +3,35 @@ import { Image } from "astro:assets";
 import arrowImg from "../img/arrow-img.svg";
 ---
 
-<div id="my-photo-container">
-  <div>
-    <div class="arrow">
-      <p id="names-block">This is me</p>
-      <div>
-        <Image src={arrowImg} alt="стрелка на моё фото" />
-      </div>
+<div id="my-photo-container" class="block-info">
+  <div class="arrow">
+    <p id="names-block">This is me</p>
+    <div id="img-arrow-container">
+      <Image src={arrowImg} alt="стрелка на моё фото" />
     </div>
-    <div class="my-photo"></div>
   </div>
+  <div class="my-photo"></div>
 </div>
 
 <style>
   #my-photo-container {
     width: 100%;
-    height: 100%;
+    display: flex;
+    justify-content: flex-end;
   }
   #names-block {
     font-size: 5rem;
+    width: max-content;
+  }
+  #img-arrow-container {
+    width: 60%;
+    aspect-ratio: 1;
+    transform: translateX(60%);
+
+    & > img {
+      width: 100%;
+      height: 100%;
+      filter: grayscale(1);
+    }
   }
 </style>

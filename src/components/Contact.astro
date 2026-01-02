@@ -1,0 +1,62 @@
+---
+import { Image } from "astro:assets";
+import githubImg from "../img/github.svg";
+import telegramImg from "../img/telegram.svg";
+import mailImg from "../img/mail.svg";
+---
+
+<div class="block-info offset-element">
+  <p class="header-text">Link</p>
+  <ul id="list-links">
+    <li>
+      <div class="context-link">
+        <Image src={githubImg} alt="GitHub" class="image-link" />
+        <a href="https://github.com/Bit01101">GitHub</a>
+      </div>
+    </li>
+    <li>
+      <div class="context-link">
+        <Image src={telegramImg} alt="Telegram" class="image-link" />
+        <a href="https://t.me/Egor01101">Telegram</a>
+      </div>
+    </li>
+    <li>
+      <div class="context-link">
+        <Image src={mailImg} alt="Email" class="image-link" />
+        <a href="mailto:Bit01101@yandex.ru">Email</a>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<style>
+  #list-links {
+    list-style: none;
+
+    & > li {
+      margin-bottom: 0.5rem;
+    }
+  }
+  .context-link {
+    height: min-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    & > a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+
+      font-size: 1.75rem;
+      margin-left: 0.5rem;
+    }
+  }
+  .image-link {
+    --size-img: 2rem;
+
+    height: var(--size-img);
+    width: var(--size-img);
+    aspect-ratio: 1;
+  }
+</style>

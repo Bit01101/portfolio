@@ -1,9 +1,85 @@
-<div>
-    <div>
-        <img src="" alt="">
-    </div>
-    <div>
-        <p>Constellation</p>
-        <p>Description...</p>
-    </div>
+---
+import { Image } from "astro:assets";
+import templateImg from "../img/template.jpg";
+---
+
+<div id="contellation" class="block-info">
+  <div id="contellation-img-container">
+    <Image id="contellation-img" src={templateImg} alt="Приложение" />
+  </div>
+  <div id="description-application">
+    <h1>Constellation</h1>
+    <p>
+      Равным образом, новая модель организационной деятельности обеспечивает
+      актуальность поставленных обществом задач. Внезапно, независимые
+      государства объявлены нарушающими общечеловеческие нормы этики и морали.
+      Однозначно, действия представителей оппозиции заблокированы в рамках своих
+      собственных рациональных ограничений.
+    </p>
+  </div>
+  <div id="coords"></div>
 </div>
+<script>
+  const element = document.getElementById("contellation-img")!;
+
+  let targetRotationX = 0;
+  let targetRotationY = 0;
+  let currentRotationX = 0;
+  let currentRotationY = 0;
+  const easing = 0.12; // Скорость сглаживания
+
+  document.addEventListener("mousemove", (event: MouseEvent) => {
+    const rect = element.getBoundingClientRect();
+    const x = event.clientX;
+    const y = event.clientY;
+
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    const ratX = Math.max(-1, Math.min(1, (x - centerX) / (rect.width / 2)));
+    const ratY = Math.max(-1, Math.min(1, (y - centerY) / (rect.height / 2)));
+
+    // Цели ±25°
+    targetRotationX = ratY * 35;
+    targetRotationY = ratX * 35;
+
+    // Сглаживание: current += (target - current) * easing
+    currentRotationX += (targetRotationX - currentRotationX) * easing;
+    currentRotationY += (targetRotationY - currentRotationY) * easing;
+
+    element.style.transform = `rotateX(${-currentRotationX.toFixed(2)}deg) rotateY(${currentRotationY.toFixed(2)}deg)`;
+  });
+</script>
+<style>
+  #contellation {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 45%;
+    grid-template-rows: 1fr;
+    transform-origin: center center;
+    will-change: transform;
+  }
+  #contellation-img-container {
+    width: 100%;
+    height: 100%;
+    padding: 0 10%;
+  }
+  #contellation-img {
+    width: 100%;
+    height: auto;
+    filter: grayscale(1);
+    transition: 0.5s filter ease-in-out;
+    perspective: 1rem;
+
+    &:hover {
+      filter: grayscale(0);
+    }
+  }
+  #description-application {
+  }
+  #coords {
+    position: fixed;
+    top: 0;
+    right: 0;
+  }
+</style>
