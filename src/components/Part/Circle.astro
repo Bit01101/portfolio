@@ -1,0 +1,18 @@
+---
+const { id, class: className = "", style = "" } = Astro.props;
+---
+
+<div id={id} class:list={["circle-color", className]} style={style}></div>
+
+<style>
+  .circle-color {
+    position: absolute;
+    background: radial-gradient(#ffffffa3 0, transparent 65%);
+    background-size: 100% 100%;
+    background-position: center center;
+    border: none;
+    aspect-ratio: 1;
+    width: 50%;
+    z-index: -2;
+  }
+</style>

@@ -1,0 +1,26 @@
+---
+const { id, class: className = "" } = Astro.props;
+---
+
+<div id={id} class:list={["grid-gradient", className]}></div>
+
+<style>
+  .grid-gradient {
+    position: absolute;
+    background:
+      linear-gradient(var(--grid-color), transparent 2px),
+      linear-gradient(90deg, var(--grid-color), transparent 2px);
+    background-size: var(--grid-size) var(--grid-size);
+    background-position: center center;
+    border: none;
+    aspect-ratio: 1;
+    mask-image: radial-gradient(circle at center, black 30%, transparent 70%);
+    -webkit-mask-image: radial-gradient(
+      circle at center,
+      black 30%,
+      transparent 70%
+    );
+    width: 50%;
+    z-index: -1;
+  }
+</style>
